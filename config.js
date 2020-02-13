@@ -1,0 +1,1 @@
+export const HTTP_ENDPOINT = "http://localhost:4000/";
