@@ -7,9 +7,9 @@ import BlogItem from '../components/BlogItem';
 import Router from 'next/router'
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
-
+import {actions as toastrActions} from 'react-redux-toastr'
 const button = {
-    float: "right",
+    marginRight: "0px",
 }
 class Index extends React.Component {
     constructor(props, context) {
@@ -46,9 +46,15 @@ class Index extends React.Component {
 
     selectBlog(data) {
         if(data.action === "delete") {
-            this.props.actions.deleteBlog(data.blog.id).then((data) => {
+            this.props.actions.deleteBlog(data.blog.id).then(() => {
                 this.props.actions.getAllBlogs();
+                this.props.toastr.add({   
+                    position: 'top-right',
+                    type: 'success', 
+                    title: `Delete Successful`, 
+                    message: `successfully deleted ${data.blog.title}`})
             });
+            
             return;
         }
         this.props.actions.setSelectedBlog(data.blog);
@@ -67,7 +73,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        actions: bindActionCreators(Object.assign({}, blogActions), dispatch)
+        actions: bindActionCreators(Object.assign({}, blogActions), dispatch),
+        toastr: bindActionCreators(Object.assign({}, toastrActions), dispatch)
     }
 }
 

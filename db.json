@@ -1,19 +1,14 @@
 {
   "blogs": [
     {
-      "id": 1,
-      "title": "blog 1",
-      "description": "this is my first blog "
-    },
-    {
-      "title": "blog 3",
+      "title": "blog1",
       "description": "test 3",
-      "id": 3
+      "id": 1
     },
     {
       "title": "blog2",
-      "description": "test2",
-      "id": 4
+      "description": "test 3",
+      "id": 2
     }
   ]
 }
